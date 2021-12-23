@@ -6,16 +6,11 @@ import { Repository } from "typeorm";
 @Injectable()
 export class UserService {
   constructor(
-    // @InjectRepository(User)
-    // private usersRepository: Repository<User>
+    @InjectRepository(User)
+    private readonly usersRepository: Repository<User>
   ) {}
 
-  // findAll(): Promise<User[]> {
-  //   return this.usersRepository.find();
-  // }
-
-  findAll(): User[] {
-    const list: User[] = [];
-    return list;
+  findAll(): Promise<User[]> {
+    return this.usersRepository.find();
   }
 }
