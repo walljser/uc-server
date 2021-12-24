@@ -2,19 +2,19 @@ const isDevelopment = process.env.NODE_ENV === 'development';
 
 module.exports = {
   type: 'mysql',
-  host: 'localhost',
-  port: '3306',
-  username: 'root',
-  password: 'root',
-  database: 'user_center_dev',
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
   autoLoadEntities: true,
   synchronize: true,
   cli: {
-    migrationsDir: 'src/db/migrations',
-    entitiesDir: 'src/entities'
+    migrationsDir: 'src/apps/init/db/migrations',
+    entitiesDir: 'src/apps/oauth/entities'
   },
-  migrations: ['src/db/migrations/**/*.ts'],
-  entities: ['src/entities/**/*.ts']
+  migrations: ['src/apps/init/db/migrations/**/*.ts'],
+  entities: ['src/apps/oauth/entities/**/*.ts']
   // cli: {
   //   migrationsDir: 'src/apps/init/db/migrations',
   //   entitiesDir: 'src/apps/oauth2/entities',

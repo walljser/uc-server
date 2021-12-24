@@ -1,4 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Roles } from '../constants';
 
 @Entity()
 export class User {
@@ -18,4 +19,7 @@ export class User {
     default: false
   })
   isActive: boolean;
+
+  @Column({ type: 'varchar', default: Roles.USER})
+  role: Roles;
 }
