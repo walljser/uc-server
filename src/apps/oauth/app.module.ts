@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './modules/user/user.module';
+import { ClientModule } from './modules/client/client.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as configs from '@/config';
 import * as entities from './entities';
@@ -21,7 +22,8 @@ import * as entities from './entities';
         };
       }
     }),
-    UserModule
+    UserModule,
+    ClientModule
   ],
   controllers: [AppController],
   providers: [],
