@@ -3,7 +3,7 @@ import { BaseEntity } from './base.entity';
 import { User } from './user.entity';
 
 @Entity()
-export class ThirdLogin extends BaseEntity{
+export class ThirdLogin extends BaseEntity {
   /**
    * 类型
    * @type {string}
@@ -39,6 +39,6 @@ export class ThirdLogin extends BaseEntity{
   @Column({ type: 'varchar', nullable: true })
   avatar: string;
 
-  @ManyToOne(type => User, u => u.thirdLogin, { onDelete: 'CASCADE' })
+  @ManyToOne((type) => User, (u) => u.thirdLogin, { onDelete: 'CASCADE' })
   user: User;
 }

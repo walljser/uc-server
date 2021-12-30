@@ -9,5 +9,5 @@ export const db = registerAs<ConfigFactory<ConnectionOptions>>('db', () => ({
   autoLoadEntities: true,
   entities: null,
   retryAttempts: 20,
-  retryDelay: 5000
+  retryDelay: 5000,
 }));

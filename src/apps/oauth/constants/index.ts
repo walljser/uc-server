@@ -11,20 +11,20 @@ export enum GrantTypes {
 }
 
 export enum ResponseTypes {
-  code = 'code'
+  code = 'code',
 }
 
 export enum ResponseModes {
   query = 'query',
   fragment = 'fragment',
-  form_post = 'form_post'
+  form_post = 'form_post',
 }
 
 export enum Scopes {
   openid = 'openid',
   email = 'email',
   profile = 'profile',
-  offline_access = 'offline_access'
+  offline_access = 'offline_access',
 }
 
 export enum TokenAuthMethod {

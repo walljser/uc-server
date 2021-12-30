@@ -4,7 +4,7 @@ import { ThirdLogin } from './third-login.entity';
 import { BaseEntity } from './base.entity';
 
 @Entity()
-export class User extends BaseEntity{
+export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -18,15 +18,13 @@ export class User extends BaseEntity{
   age: number;
 
   @Column({
-    default: false
+    default: false,
   })
   isActive: boolean;
 
-  @Column({ type: 'varchar', default: Roles.USER})
+  @Column({ type: 'varchar', default: Roles.USER })
   role: Roles;
 
-  @OneToMany(type => ThirdLogin, tl => tl.user, { eager: true })
+  @OneToMany((type) => ThirdLogin, (tl) => tl.user, { eager: true })
   thirdLogin: ThirdLogin[];
-
-  
 }

@@ -9,7 +9,7 @@ import * as entities from './entities';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      load: Object.values(configs)
+      load: Object.values(configs),
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
@@ -17,11 +17,11 @@ import * as entities from './entities';
       useFactory: (config: ConfigService) => {
         return {
           ...config.get('db'),
-          entities: Object.values(entities)
+          entities: Object.values(entities),
         };
-      }
+      },
     }),
-    UserModule
+    UserModule,
   ],
   controllers: [AppController],
   providers: [],

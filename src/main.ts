@@ -15,16 +15,16 @@ async function bootstrap() {
 
   await program.parseAsync(process.argv);
   program
-  .command('serve', { isDefault: true })
-  .description('Start oauth server')
-  .name('serve')
-  .action(appBootstrap);
+    .command('serve', { isDefault: true })
+    .description('Start oauth server')
+    .name('serve')
+    .action(appBootstrap);
 
   program
-  .command('init')
-  .description('Run the init script (migrate and seed the DB)')
-  .name('init')
-  .action(initBootstrap);
+    .command('init')
+    .description('Run the init script (migrate and seed the DB)')
+    .name('init')
+    .action(initBootstrap);
 
   await program.parseAsync(process.argv);
 }
