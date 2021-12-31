@@ -13,7 +13,6 @@ import {
 } from 'class-validator';
 
 export class ClientDto {
-  @IsNotEmpty({ message: "client's name can not bee empty" })
   @IsString()
   @MinLength(4)
   @MaxLength(24)
