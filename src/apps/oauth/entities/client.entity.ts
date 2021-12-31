@@ -17,19 +17,19 @@ export class Client extends BaseEntity {
   @Column({ type: 'varchar' })
   secret: string;
 
-  @Column({ type: 'varchar', nullable: false })
+  @Column({ type: 'simple-array', nullable: false })
   redirect: string[];
 
   @Column({
-    type: 'varchar',
+    type: 'simple-array',
     default: `${GrantTypes.authorization_code}`,
   })
   grantTypes: GrantTypes[];
 
-  @Column({ type: 'varchar', default: `${ResponseTypes.code}` })
+  @Column({ type: 'simple-array', default: `${ResponseTypes.code}` })
   responseTypes: ResponseTypes[];
 
-  @Column({ type: 'varchar', default: `${ResponseModes.query}` })
+  @Column({ type: 'simple-array', default: `${ResponseModes.query}` })
   responseModes: ResponseModes[];
 
   @Column({
@@ -39,7 +39,7 @@ export class Client extends BaseEntity {
   scopes: string;
 
   @Column({
-    type: 'varchar',
+    type: 'simple-array',
     default: `${TokenAuthMethod.client_secret_post},${TokenAuthMethod.client_secret_basic}`,
   })
   authMethods: TokenAuthMethod[];
