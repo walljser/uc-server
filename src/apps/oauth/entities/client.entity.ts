@@ -1,5 +1,5 @@
 import { randomBytes } from 'crypto';
-import { BeforeInsert, Column, Entity } from 'typeorm';
+import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import {
   GrantTypes,
   ResponseModes,
@@ -17,32 +17,29 @@ export class Client extends BaseEntity {
   @Column({ type: 'varchar' })
   secret: string;
 
-  @Column({ type: 'varchar', array: true, nullable: false })
+  @Column({ type: 'varchar', nullable: false })
   redirect: string[];
 
   @Column({
     type: 'varchar',
-    array: true,
     default: `${GrantTypes.authorization_code}`,
   })
   grantTypes: GrantTypes[];
 
-  @Column({ type: 'varchar', array: true, default: `${ResponseTypes.code}` })
+  @Column({ type: 'varchar', default: `${ResponseTypes.code}` })
   responseTypes: ResponseTypes[];
 
-  @Column({ type: 'varchar', array: true, default: `${ResponseModes.query}` })
+  @Column({ type: 'varchar', default: `${ResponseModes.query}` })
   responseModes: ResponseModes[];
 
   @Column({
     type: 'varchar',
-    array: true,
     default: `${Object.values(Scopes).join(',')}`,
   })
   scopes: string;
 
   @Column({
     type: 'varchar',
-    array: true,
     default: `${TokenAuthMethod.client_secret_post},${TokenAuthMethod.client_secret_basic}`,
   })
   authMethods: TokenAuthMethod[];

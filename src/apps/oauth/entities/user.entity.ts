@@ -26,5 +26,5 @@ export class User extends BaseEntity {
   role: Roles;
 
   @OneToMany((type) => ThirdLogin, (tl) => tl.user, { eager: true })
-  thirdLogin: ThirdLogin[];
+  thirdLogins: ThirdLogin[];
 }
