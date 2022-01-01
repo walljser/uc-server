@@ -8,10 +8,7 @@ export class AdminUserSeeder implements Seeder {
     console.log('hahahaha');
     await entityManager.getRepository(User).save(
       entityManager.getRepository(User).create({
-        firstName: 'yu',
-        lastName: 'shijie',
-        age: 15,
-        role: Roles.ADMIN,
+        username: 'admin@admin.com',
       }),
     );
   }
