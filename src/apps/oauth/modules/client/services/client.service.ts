@@ -35,7 +35,6 @@ export class ClientService {
   }
 
   public async createClient(clientDto: ClientDto): Promise<Client> {
-    console.log('hahah');
     return this.clientRepository.createClient(clientDto);
   }
 }

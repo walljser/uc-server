@@ -9,12 +9,10 @@ import {
 @EntityRepository(Client)
 export class ClientRepository extends Repository<Client> {
   async createClient(clientDto: ClientDto): Promise<Client> {
-    console.log(111111);
     const { name } = clientDto;
-    console.log(name);
     const findClient: Client = await this.findOne({ name });
     if (findClient) {
-      throw new ConflictException("client's name has exists");
+      throw new ConflictException('clientName已存在');
     }
 
     let client: Client = await this.create(clientDto);
