@@ -22,14 +22,17 @@ export class Client extends BaseEntity {
 
   @Column({
     type: 'simple-array',
-    default: `${GrantTypes.authorization_code}`,
   })
   grantTypes: GrantTypes[];
 
-  @Column({ type: 'simple-array', default: `${ResponseTypes.code}` })
+  @Column({
+    type: 'simple-array',
+  })
   responseTypes: ResponseTypes[];
 
-  @Column({ type: 'simple-array', default: `${ResponseModes.query}` })
+  @Column({
+    type: 'simple-array',
+  })
   responseModes: ResponseModes[];
 
   @Column({
@@ -40,12 +43,26 @@ export class Client extends BaseEntity {
 
   @Column({
     type: 'simple-array',
-    default: `${TokenAuthMethod.client_secret_post},${TokenAuthMethod.client_secret_basic}`,
   })
   authMethods: TokenAuthMethod[];
 
   @BeforeInsert()
-  createSecret() {
+  defaultResponseValues() {
+    if (!this.grantTypes) {
+      this.grantTypes = [GrantTypes.authorization_code];
+    }
+    if (!this.responseTypes) {
+      this.responseTypes = [ResponseTypes.code];
+    }
+    if (!this.responseModes) {
+      this.responseModes = [ResponseModes.query];
+    }
+    if (!this.authMethods) {
+      this.authMethods = [
+        TokenAuthMethod.client_secret_post,
+        TokenAuthMethod.client_secret_basic,
+      ];
+    }
     if (!this.secret) {
       this.secret = randomBytes(32).toString('hex');
     }
