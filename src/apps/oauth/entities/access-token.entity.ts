@@ -1,8 +1,9 @@
 import { Column, ManyToMany, ManyToOne } from 'typeorm';
+import { User } from '.';
 import { GrantTypes } from '../constants';
 import { Client } from './client.entity';
 
-export class AccessTokenEntity {
+export class AccessToken {
   @Column({ type: 'uuid', nullable: true })
   userId: string;
 
@@ -14,7 +15,14 @@ export class AccessTokenEntity {
 
   @Column({ type: 'varchar' })
   grantType: GrantTypes;
- 
-  // @ManyToOne(type => Client, client => client.to )
-  // client!: Promise<Client>;
+
+  @ManyToOne((type) => Client, (client) => client.tokens, {
+    onDelete: 'CASCADE',
+  })
+  client!: Promise<Client>;
+
+  @ManyToOne((type) => User, (user) => user.tokens, {
+    onDelete: 'CASCADE',
+  })
+  user: Promise<User>;
 }

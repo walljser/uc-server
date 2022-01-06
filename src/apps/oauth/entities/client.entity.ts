@@ -1,5 +1,12 @@
+import { AccessToken } from './access-token.entity';
 import { randomBytes } from 'crypto';
-import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BeforeInsert,
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import {
   GrantTypes,
   ResponseModes,
@@ -45,6 +52,9 @@ export class Client extends BaseEntity {
     type: 'simple-array',
   })
   authMethods: TokenAuthMethod[];
+
+  @OneToMany(() => AccessToken, (token) => token.client)
+  tokens!: Promise<AccessToken>;
 
   @BeforeInsert()
   defaultResponseValues() {

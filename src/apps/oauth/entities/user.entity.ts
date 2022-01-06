@@ -1,3 +1,4 @@
+import { AccessToken } from './access-token.entity';
 import {
   Entity,
   Column,
@@ -60,6 +61,11 @@ export class User {
 
   @Column({ nullable: true })
   gender: number;
+
+  @OneToMany((type) => AccessToken, (accessToken) => accessToken.user, {
+    eager: true,
+  })
+  tokens: Promise<AccessToken>;
 
   @OneToMany((type) => ThirdLogin, (tl) => tl.user, { eager: true })
   thirdLogins: ThirdLogin[];
