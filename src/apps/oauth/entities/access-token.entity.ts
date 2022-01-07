@@ -1,9 +1,13 @@
-import { Column, ManyToMany, ManyToOne } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { User } from '.';
 import { GrantTypes } from '../constants';
 import { Client } from './client.entity';
 
+@Entity()
 export class AccessToken {
+  @PrimaryGeneratedColumn()
+  id: number;
+
   @Column({ type: 'uuid', nullable: true })
   userId: string;
 

@@ -3,7 +3,7 @@ import { User } from '@oauth/entities/user.entity';
 import { CreateUserDto } from '../dtos/user.dto';
 import { UserService } from '../services/user.service';
 
-@Controller('/users')
+@Controller('/v1.0/users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 

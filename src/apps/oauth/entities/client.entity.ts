@@ -53,8 +53,8 @@ export class Client extends BaseEntity {
   })
   authMethods: TokenAuthMethod[];
 
-  @OneToMany(() => AccessToken, (token) => token.client)
-  tokens!: Promise<AccessToken>;
+  @OneToMany((type) => AccessToken, (token) => token.client)
+  tokens!: Promise<AccessToken[]>;
 
   @BeforeInsert()
   defaultResponseValues() {

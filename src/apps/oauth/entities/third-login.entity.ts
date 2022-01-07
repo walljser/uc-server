@@ -39,6 +39,6 @@ export class ThirdLogin extends BaseEntity {
   @Column({ type: 'varchar', nullable: true })
   avatar: string;
 
-  @ManyToOne(type => User, (u) => u.thirdLogins, { onDelete: 'CASCADE' })
+  @ManyToOne((type) => User, (u) => u.thirdLogins, { onDelete: 'CASCADE' })
   user: Promise<User>;
 }
