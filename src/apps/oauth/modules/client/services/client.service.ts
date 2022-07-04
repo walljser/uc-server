@@ -19,13 +19,13 @@ export class ClientService {
   ): Promise<Client> {
     const client = await this.clientRepository.findOne(clientId);
     if (!client) {
-      throw UcException.invalidClient();
+      throw UcException.invalidClient('Secret matching failed.');
     }
     if (
       validClientSecret &&
       (!clientSecret || clientSecret !== client.secret)
     ) {
-      throw UcException.invalidClient('Client secret does not match');
+      throw UcException.invalidClient('Client secret does not match.');
     }
     return client;
   }

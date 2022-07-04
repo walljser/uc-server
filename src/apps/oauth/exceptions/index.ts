@@ -19,7 +19,7 @@ export class UcException extends HttpException {
   static invalidClient(msg?: string) {
     return new UcException(
       'invalid client',
-      `Client authentication failed. ${msg} || ''`.trimRight(),
+      `Client authentication failed. ${msg || ''}`.trimRight(),
       HttpStatus.UNAUTHORIZED,
     );
   }

@@ -1,3 +1,4 @@
+import { RegisterService } from './services/register.service';
 import { Client } from '@/apps/oauth/entities/client.entity';
 import { AccessToken } from './../../entities/access-token.entity';
 import { ThirdLogin } from './../../entities/third-login.entity';
@@ -19,7 +20,7 @@ import { UserRepository } from './repositories/user.repository';
     ]),
   ],
   controllers: [UserController],
-  providers: [UserService],
-  exports: [UserService],
+  providers: [UserService, RegisterService],
+  exports: [UserService, RegisterService],
 })
 export class UserModule {}

@@ -1,4 +1,4 @@
 export interface ClientCredentials {
-  clientId: string;
+  clientId: number;
   clientSecret: string;
 }

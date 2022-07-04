@@ -17,6 +17,7 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
+    "@typescript-eslint/ban-ts-comment": "off",
     "paths": {
       "@/*": ["src/*"],
       "@oauth/*": ["src/apps/oauth/*"]

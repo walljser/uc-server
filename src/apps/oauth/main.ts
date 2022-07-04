@@ -5,6 +5,7 @@ import { AppModule } from './app.module';
 
 export default async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.setGlobalPrefix('v1.0');
   app.useGlobalPipes(new ValidationPipe());
 
   const swaggerOptions = new DocumentBuilder()

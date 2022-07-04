@@ -4,10 +4,10 @@ export enum Roles {
 }
 
 export enum GrantTypes {
-  password = 'password',
-  authorization_code = 'authorization',
-  refresh_token = 'refresh_token',
-  client_credentials = 'client_credentials',
+  password = 'password', // 密码
+  authorization_code = 'authorization', // 授权码
+  refresh_token = 'refresh_token', // 更新令牌
+  client_credentials = 'client_credentials', // 凭证式
 }
 
 export enum ResponseTypes {
