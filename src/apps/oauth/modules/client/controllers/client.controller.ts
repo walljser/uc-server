@@ -18,7 +18,7 @@ export class ClientController {
   @Get(':id')
   getClient(
     @Param('id') id: number,
-    @Query('secret') secret?: string,
+    @Query('secret') secret: string,
   ): Promise<Client> {
     console.log(secret)
     return this.clientService.getClient({
