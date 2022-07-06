@@ -1,32 +1,33 @@
-require('dotenv').config();
-import { Command } from 'commander';
-import initBootstrap from '@/apps/init/main';
-import appBootstrap from '@/apps/oauth/main';
+/*
+ * @Description:
+ * @Author: YUSHIJIE
+ * @Date: 2022-07-06 10:57:12
+ * @LastEditTime: 2022-07-06 17:20:44
+ * @LastEditors: YUSHIJIE
+ * @Usage:
+ */
+import { ValidationPipe } from '@nestjs/common';
+import { NestFactory } from '@nestjs/core';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { AppModule } from './app.module';
+import { HttpExceptionFilter } from './core/filter/http-exception.filter';
+import { TransformInterceptor } from './core/interceptor/transform.interceptor';
 
 async function bootstrap() {
-  const program = new Command(process.env.NODE_UID);
-  program.version(require('../package.json').version);
+  const app = await NestFactory.create(AppModule);
+  app.useGlobalFilters(new HttpExceptionFilter());
+  app.useGlobalInterceptors(new TransformInterceptor());
+  app.useGlobalPipes(new ValidationPipe());
 
-  // program
-  //   .command('init')
-  //   .description('init')
-  //   .name('init')
-  //   .action(initBootstrap);
+  const config = new DocumentBuilder()
+    .setTitle('blog server')
+    .setDescription('blog server doc')
+    .setVersion('1.0')
+    .addBearerAuth()
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('docs', app, document);
 
-  await program.parseAsync(process.argv);
-  program
-    .command('serve', { isDefault: true })
-    .description('Start oauth server')
-    .name('serve')
-    .action(appBootstrap);
-
-  program
-    .command('init')
-    .description('Run the init script (migrate and seed the DB)')
-    .name('init')
-    .action(initBootstrap);
-
-  await program.parseAsync(process.argv);
+  await app.listen(3000);
 }
-
 bootstrap();
